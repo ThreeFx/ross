@@ -1,0 +1,23 @@
+[build]
+target = "riscv64gc-unknown-none-elf"
+rustflags = [
+  "-C", "link-arg=-Tmemory-layout.ld",
+  "-C", "panic=abort"
+]
+
+[target.riscv64gc-unknown-none-elf]
+runner = [
+  "qemu-system-riscv64",
+  "-M", "virt",
+  #"-smp", "8",
+  "-nographic",
+  "-bios", "none",
+  "-kernel"]
+
+[target.aarch64-unknown-none]
+runner = [
+  "qemu-system-aarch64",
+  "-M", "virt",
+  "-cpu", "cortex-a57",
+  "-nographic",
+  "-kernel"]
